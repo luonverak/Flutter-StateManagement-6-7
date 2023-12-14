@@ -8,4 +8,10 @@ class ProductController extends GetxController {
     update();
     Get.snackbar('Success', 'Item add to cart');
   }
+
+  void removeCart(ShoeModel model) async {
+    list.remove(model);
+    update();
+    Get.snackbar('Success', 'Item delete from cart');
+  }
 }

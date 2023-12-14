@@ -4,6 +4,7 @@ import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 import 'package:state_management/controller/product_controller.dart';
+import 'package:state_management/view/cart_screen.dart';
 import '../model/category_model.dart';
 import '../model/shoe_model.dart';
 import '../widget/category_widget.dart';
@@ -35,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                   child: ListView(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 15, right: 15),
+                        padding: const EdgeInsets.only(left: 15, right: 15),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -47,13 +48,19 @@ class HomeScreen extends StatelessWidget {
                                 fontFamily: 'Lato',
                               ),
                             ),
-                            Obx(
-                              () => badges.Badge(
-                                badgeContent: Text('${controller.list.length}'),
-                                child: const Icon(
-                                  Icons.shopping_cart,
-                                  color: Colors.white,
-                                  size: 30,
+                            GestureDetector(
+                              onTap: () => Get.to(CartScreen()),
+                              child: Obx(
+                                () => badges.Badge(
+                                  badgeContent: Text(
+                                    '${controller.list.length}',
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                  child: const Icon(
+                                    Icons.shopping_cart,
+                                    color: Colors.white,
+                                    size: 30,
+                                  ),
                                 ),
                               ),
                             )
